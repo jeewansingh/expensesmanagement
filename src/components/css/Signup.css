@@ -1,0 +1,21 @@
+.signupIcon {
+  font-size: 20px;
+  position: absolute;
+  transform: translate(15px, 117px);
+  color: #aaa;
+}
+.lockIcon {
+  position: absolute;
+  transform: translate(15px, 291px);
+  color: #aaa;
+}
+.lockIcon1 {
+  position: absolute;
+  transform: translate(15px, 234px);
+  color: #aaa;
+}
+.userIcon {
+  position: absolute;
+  transform: translate(15px, 178px);
+  color: #aaa;
+}

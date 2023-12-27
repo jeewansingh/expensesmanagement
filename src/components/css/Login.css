@@ -1,0 +1,150 @@
+/* .formContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.form {
+  background-color: rgba(255, 0, 0, 0.207);
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border-radius: 3px;
+  padding: 20px;
+  margin: 100px;
+  align-items: center;
+  gap: 20px;
+}
+.form input {
+  width: 300px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 5px;
+  opacity: 0.5;
+}
+.form input:focus,
+.form input:active {
+  background-color: #eee;
+  opacity: 1;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 5px;
+}
+.formHeading {
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.5;
+}
+.formDesc {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 10px 0;
+}
+.link {
+  text-decoration: none;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.loginContainer {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: center;
+  font-family: "poppins";
+  height: 100vh;
+}
+.loginText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: auto;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(#0575e6, #021b79);
+  padding-left: 200px;
+  color: #fff;
+}
+.login {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+.heading {
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 600;
+}
+.subHeading {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.formMainHeading {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+}
+.formSubHeading {
+  line-height: 0.8;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.login input {
+  padding: 20px;
+  width: 100%;
+  border-radius: 20px;
+  height: 40px;
+  border: 1px solid #aaa;
+  font-size: 16px;
+}
+.login label {
+  padding: 12px;
+  color: #0575e6;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+.loginButton {
+  background-color: #0575e6;
+  border: none;
+  color: #fff;
+  padding: 0px;
+  width: 100%;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.noAccount {
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+.noAccount a {
+  text-decoration: none;
+}
+.userIcon {
+  position: absolute;
+  transform: translate(15px, 108px);
+  color: #aaa;
+}
+.lockIcon {
+  position: absolute;
+  transform: translate(15px, 1px);
+  color: #aaa;
+}

@@ -1,0 +1,7 @@
+.NavItem {
+  text-decoration: none;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  display: flex;
+}
