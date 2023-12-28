@@ -1,6 +1,6 @@
 .Button {
   font-family: inherit;
-  background-color: #0575e6;
+  background-color: #021c79;
   border: none;
   color: #fff;
   padding: 0px;
@@ -11,5 +11,5 @@
   cursor: pointer;
 }
 .Button:hover {
-  background-color: #021c79;
+  background-color: #0575e6;
 }

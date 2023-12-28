@@ -1,7 +1,7 @@
 .Container {
+  margin: 10px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  width: 100vw;
   height: 100vh;
   background-image: linear-gradient(to left, #0576e6bf, #021c79d7),
     url("../../Background.png");

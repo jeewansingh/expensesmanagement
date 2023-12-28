@@ -1,26 +1,36 @@
 import "./css/Login.css";
 import React, { useState } from "react";
 import Button from "./Button";
-import { FaUser, FaLock } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
     if (username == "username" && password == "pass") {
-      alert("Logged in");
-    } else alert("Invalid Username or Password!");
+      toast.success("Logged in");
+    } else toast.error("Invalid Username or Password!");
+    console.log(username);
+    console.log(password);
   }
-  console.log(username);
-  console.log(password);
+
+  const navigate = useNavigate();
+  function goHome() {
+    navigate("/");
+  }
   return (
     <>
       <div className="loginContainer">
         <div className="loginText">
-          <div className="heading">Heading</div>
-          <div className="subHeading">Sub Heading</div>
-          <Button btnName="Read More" />
+          <div className="heading">Great to see you again!</div>
+          <div className="subHeading">
+            Login for a Journey of Smart Incomes and Expenses Management!
+          </div>
+          <Button btnName="Go Home" onClick={goHome}></Button>
         </div>
         <div className="login">
           <form
@@ -62,6 +72,7 @@ const Login = () => {
                 <span>Sign up</span>
               </Link>
             </div>
+            <ToastContainer theme="dark" />
           </form>
         </div>
       </div>

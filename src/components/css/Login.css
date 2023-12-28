@@ -72,7 +72,7 @@
   height: 100%;
   width: 100%;
   background-image: linear-gradient(#0575e6, #021b79);
-  padding-left: 200px;
+  padding-left: 10%;
   color: #fff;
 }
 .login {
