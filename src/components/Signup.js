@@ -1,5 +1,5 @@
 import "./css/Login.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/Signup.css";
 import Button from "./Button";
 import { Outlet, Link } from "react-router-dom";
@@ -50,8 +50,41 @@ const Signup = () => {
       toast.error("Please Confirm Passowrd again.");
       return false;
     }
-    toast.success("Signup Complete");
     setIsSignnedup(true);
+
+    toast.success("Signup Complete");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 3000);
+
+    const url = "http://localhost/test/signup.php";
+    let fData = new FormData();
+    fData.append("name", name);
+    fData.append("username", username);
+    fData.append("password", password);
+    axios
+      .post(url, fData)
+      //.then((response) => alert(response.data))
+      .catch((error) => alert(error));
+  }
+
+  function lookup(event) {
+    let username = event.target.value;
+    let url = `http://localhost/test/lookup.php?username=${username}`;
+    axios
+      .get(url)
+      .then((response) => {
+        toast.success(response.data.detail);
+
+        return response.data;
+      })
+      .then((data) => {
+        console.log(data.detail);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.detail);
+      });
   }
   const navigate = useNavigate();
   function goHome() {
@@ -93,6 +126,7 @@ const Signup = () => {
             <div>
               <label>Username</label>
               <input
+                onBlur={lookup}
                 type="text"
                 placeholder="username"
                 autoComplete="off"
@@ -100,6 +134,7 @@ const Signup = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               ></input>
+              <span id="help_text_username"></span>
             </div>
             <div>
               <label>Password</label>
