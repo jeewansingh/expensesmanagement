@@ -6,6 +6,7 @@ function Dashboard() {
   if (token == null || token == undefined) {
     navigate("/login");
   }
+  navigate("/login");
   return (
     <>
       <h1>Dashboard</h1>
