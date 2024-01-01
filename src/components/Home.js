@@ -4,6 +4,7 @@ import Button from "./Button";
 import { BrowserRouter, Outlet, Link } from "react-router-dom";
 import MainFeatures from "./MainFeatures";
 import { useNavigate } from "react-router-dom";
+import Subscribe from "./Subscribe";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,8 +29,8 @@ const Home = () => {
           <Outlet />
         </div>
       </div>
-
       <MainFeatures />
+      <Subscribe />
     </>
   );
 };

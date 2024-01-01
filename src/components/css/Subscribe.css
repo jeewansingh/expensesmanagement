@@ -1,0 +1,40 @@
+.subs {
+  /* background-image: url(../../img/Background1.jpg); */
+  padding-bottom: 20px;
+  background-color: #0575e6;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  align-items: center;
+  padding: 80px 10%;
+}
+.subsDetails {
+  font-size: 26px;
+  font-weight: 500;
+  width: 80%;
+  color: #fff;
+  line-height: 1.5;
+  text-transform: capitalize;
+}
+.subSubmit {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  grid-gap: 10px;
+}
+.subBtn {
+  justify-self: center;
+}
+.subsSubmitEmail {
+  border-radius: 30px;
+  width: 100%;
+  background-color: transparent;
+  backdrop-filter: blur(2.5px);
+  border: 1px solid #fff;
+  padding: 10px;
+}
+
+.subsSubmitEmail,
+.subsSubmitEmail::placeholder {
+  font-weight: 100;
+  color: #fff;
+}
