@@ -56,7 +56,7 @@ const Signup = () => {
 
     setTimeout(() => {
       navigate("/login");
-    }, 3000);
+    }, 1000);
 
     const url = "http://localhost/test/signup.php";
     let fData = new FormData();
@@ -67,6 +67,11 @@ const Signup = () => {
       .post(url, fData)
       //.then((response) => alert(response.data))
       .catch((error) => alert(error));
+
+    // setCPassword("");
+    // setName("");
+    // setPassword("");
+    // setUsername("");
   }
 
   function lookup(event) {

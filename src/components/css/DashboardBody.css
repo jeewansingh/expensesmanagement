@@ -1,0 +1,143 @@
+.dashboardMainText {
+  font-size: 24px;
+  font-weight: 600;
+}
+.dashboardSubText {
+  font-size: 16px;
+  font-weight: 400;
+}
+.dashbordBodyContainer {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: #eeeeee3d;
+}
+.balanceView {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+}
+
+/* VIEW BALANCE */
+.balaceTab,
+.recentTab {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: #0575e6;
+  border-radius: 6px;
+  width: 280px;
+  padding: 16px;
+}
+
+.balaceTab div {
+  display: flex;
+  justify-content: space-between;
+}
+.balanceTitle {
+  font-size: 16px;
+  color: #fff;
+}
+.balanceTitleIcon {
+  width: 20px;
+  height: 20px;
+  /* border-radius: 50%;
+  background-color: #fff; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.balanceNumber {
+  font-size: 32px;
+  color: #fff;
+  font-weight: 600;
+}
+.recent {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+.recentTab {
+  background-color: #fff;
+  width: 300px;
+}
+.recentList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.recentTitle {
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+.recentItem {
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4px;
+  background-color: #e5e5e5;
+  border-radius: 6px;
+}
+
+.recentItemTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 16px;
+}
+.recentItemDesc {
+  font-size: 12px;
+  font-weight: 400;
+  color: #777;
+  line-height: 16px;
+}
+.recentItemDate {
+  font-size: 12px;
+  font-weight: 400;
+  color: #777;
+  line-height: 16px;
+}
+.recentItemBalance {
+  color: green;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+.recentItemBalance p {
+  width: 70px;
+  text-align: center;
+  font-style: italic;
+  text-transform: uppercase;
+  background-color: green;
+  color: #fff;
+  padding: 2px 5px;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+.trackChart {
+  background-color: #fff;
+  border-radius: 6px;
+  height: 400px;
+  width: 400px;
+  position: relative;
+  margin-bottom: 0;
+  padding: 10px;
+}
+.addItemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}

@@ -1,4 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import "./css/Dashboard.css";
+import SideNav from "./SideNav";
+import DashaboardTop from "./DashaboardTop";
+import DashboardBody from "./DashboardBody";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -9,7 +13,13 @@ function Dashboard() {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <div className="dashboardContainer">
+        <SideNav />
+        <div>
+          <DashaboardTop />
+          <DashboardBody name="Jeewan Singh" />
+        </div>
+      </div>
     </>
   );
 }

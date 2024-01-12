@@ -1,0 +1,22 @@
+.addItemButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b1b25;
+  color: #fff;
+  border-radius: 6px;
+  width: 280px;
+  height: 92px;
+  padding: 16px;
+  border: none;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+.addItemButton:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(2px 2px 5px #55555571);
+  cursor: pointer;
+}

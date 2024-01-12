@@ -1,0 +1,63 @@
+.dashboardTop {
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 16px;
+  align-items: center;
+  height: 48px;
+  border-bottom: 1px solid gray;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  width: 35px;
+  height: 35px;
+  color: #fff;
+  background-color: rgb(2, 0, 0);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.photoCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.userInfo {
+  font-size: 48px;
+  width: 100px;
+  height: 100px;
+  cursor: auto;
+}
+.search input {
+  border: none;
+  background: rgba(128, 128, 128, 0.294);
+  border-radius: 30px;
+  height: 24px;
+  width: 200px;
+  padding: 14px;
+  color: #000;
+  font-family: inherit;
+  font-size: 14px;
+  padding-left: 30px;
+  letter-spacing: 0.6px;
+}
+.search input:focus,
+.search input:valid {
+  outline: 1px solid #aaa;
+}
+.search {
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  top: 6px;
+  left: 9px;
+  color: #555;
+}

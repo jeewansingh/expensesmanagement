@@ -1,0 +1,15 @@
+.recentContainer {
+  background-color: #fff;
+  padding: 24px 0;
+  display: flex;
+  gap: 16px;
+}
+.recentTab {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: #0575e6;
+  border-radius: 6px;
+  width: 280px;
+  padding: 16px;
+}

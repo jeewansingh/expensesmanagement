@@ -27,7 +27,9 @@ function Subscribe() {
       .catch((error) => {
         toast.error(error.response.data.detail);
       });
+    setEmail("");
   }
+
   return (
     <>
       <form onSubmit={handleSubscribe}>
@@ -39,6 +41,7 @@ function Subscribe() {
           <div className="subSubmit">
             <input
               type="email"
+              value={email}
               placeholder="Enter your email"
               className="subsSubmitEmail"
               onChange={(e) => setEmail(e.target.value)}
