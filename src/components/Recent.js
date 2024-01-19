@@ -1,38 +1,20 @@
 // import "./css/Recent.css";
-import React from "react";
-
-const itemData = [
-  {
-    title: "Salary",
-    desc: "ABC Company",
-    date: "Jan 1, 2024",
-    cat: "Payable",
-    balance: "90000",
-  },
-  {
-    title: "Salary",
-    desc: "ABC Company",
-    date: "Jan 1, 2024",
-    cat: "Income",
-    balance: "90000",
-  },
-  {
-    title: "Salary",
-    desc: "ABC Company",
-    date: "Jan 1, 2024",
-    cat: "Expense",
-    balance: "90000",
-  },
-  {
-    title: "Salary",
-    desc: "ABC Company",
-    date: "Jan 1, 2024",
-    cat: "Receive",
-    balance: "90000",
-  },
-];
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 function Recent(props) {
+  const [itemData, setItemData] = useState([]);
+  const url = "http://localhost/test/recent.php";
+
+  useEffect(() => {
+    const apiUrl = `${url}`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setItemData(response.data.data);
+      })
+      .catch((error) => alert(error));
+  }, [url]);
   const items = itemData;
   return (
     <>
@@ -43,10 +25,10 @@ function Recent(props) {
             {items.map((item) => (
               <RecentItem
                 title={item.title}
-                desc={item.desc}
+                desc={item.description}
                 date={item.date}
-                cat={item.cat}
-                balance={item.balance}
+                cat={item.category}
+                balance={item.amount}
               />
             ))}
           </div>
@@ -56,14 +38,23 @@ function Recent(props) {
   );
 }
 function RecentItem(props) {
-  function test() {
-    if (props.cat === "Income") {
+  function color() {
+    if (props.cat === "income") {
       return "#006400";
-    } else if (props.cat === "Expense") {
+    } else if (props.cat === "expense") {
       return "#8b0000";
-    } else if (props.cat === "Payable") {
+    } else if (props.cat === "payable-debts") {
       return "#00008b";
     } else return "black";
+  }
+  function category() {
+    if (props.cat === "income") {
+      return "income";
+    } else if (props.cat === "expense") {
+      return "expense";
+    } else if (props.cat === "payable-debts") {
+      return "payable";
+    } else return "receivable";
   }
   return (
     <>
@@ -74,11 +65,11 @@ function RecentItem(props) {
           <div className="recentItemDate">{props.date}</div>
         </div>
         <div className="recentItemBalance">
-          <div className="" style={{ color: test() }}>
+          <div className="" style={{ color: color() }}>
             Rs. {props.balance}
           </div>
-          <p className="" style={{ backgroundColor: test() }}>
-            {props.cat}
+          <p className="" style={{ backgroundColor: color() }}>
+            {category()}
           </p>
         </div>
       </div>

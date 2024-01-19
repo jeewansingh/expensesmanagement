@@ -52,8 +52,6 @@ const Signup = () => {
     }
     setIsSignnedup(true);
 
-    toast.success("Signup Complete");
-
     setTimeout(() => {
       navigate("/login");
     }, 1000);
@@ -65,9 +63,10 @@ const Signup = () => {
     fData.append("password", password);
     axios
       .post(url, fData)
-      //.then((response) => alert(response.data))
-      .catch((error) => alert(error));
-
+      .then((response) => {
+        toast.success(response.data);
+      })
+      .catch((error) => toast.error(error));
     // setCPassword("");
     // setName("");
     // setPassword("");
@@ -81,7 +80,6 @@ const Signup = () => {
       .get(url)
       .then((response) => {
         toast.success(response.data.detail);
-
         return response.data;
       })
       .then((data) => {

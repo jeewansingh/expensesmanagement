@@ -2,39 +2,56 @@
   padding: 8px 24px;
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between;
   gap: 16px;
   align-items: center;
   height: 48px;
   border-bottom: 1px solid gray;
   background-color: #fff;
+  z-index: 11;
   position: sticky;
   top: 0;
 }
-
-.user {
+.userInfo {
   display: flex;
+  flex-direction: row;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
-  width: 35px;
-  height: 35px;
-  color: #fff;
-  background-color: rgb(2, 0, 0);
-  border-radius: 50%;
-  cursor: pointer;
 }
+.userProfile {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.userImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.logoutButton {
+  color: #fff;
+  font-size: 16px;
+  padding: 2px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+}
+
 .photoCenter {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
-.userInfo {
-  font-size: 48px;
-  width: 100px;
-  height: 100px;
-  cursor: auto;
-}
+
 .search input {
   border: none;
   background: rgba(128, 128, 128, 0.294);
@@ -60,4 +77,10 @@
   top: 6px;
   left: 9px;
   color: #555;
+}
+.pageTitle {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #0575e6;
+  margin-left: 20px;
 }

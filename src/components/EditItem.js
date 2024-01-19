@@ -1,10 +1,11 @@
 import "./css/AddItem.css";
+import { MdEdit } from "react-icons/md";
 import React from "react";
-import { IoAddCircle } from "react-icons/io5";
+import axios from "axios";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "./Schemas";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
@@ -14,72 +15,98 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import axios from "axios";
 
-function AddItem(props) {
+function EditItem(props) {
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [remark, setRemark] = useState("");
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+
+  const txn_id = props.txn_id;
   // MUI-Start //
   const [open, setOpen] = useState(false);
+
   const handleClickOpen = () => {
+    // // const [txnid, setTxnid] = useState(20);
+    // const url = "http://localhost/test/edititem.php";
+    // let fData = new FormData();
+    // fData.append("txn_id", txn_id);
+    // axios
+    //   .post(url, fData)
+    //   .then((response) => {
+    //     setTitle(response.data.title);
+    //     setDate(response.data.date);
+    //     setRemark(response.data.remark);
+    //     setDescription(response.data.description);
+    //     setAmount(response.data.amount);
+    //   })
+    //   .catch((error) => alert(error));
+
+    const url = "http://localhost/test/edititem.php";
+
+    const apiUrl = `${url}?txn_id=${txn_id}`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setTitle(response.data.title);
+        setDate(response.data.date);
+        setRemark(response.data.remark);
+        setDescription(response.data.description);
+        setAmount(response.data.amount);
+      })
+      .catch((error) => {
+        alert(error.response.data.detail);
+      });
+
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleSave = () => {
-    console.log(values);
-    setOpen(false);
-
-    const url = "http://localhost/test/userincome.php";
-    let fData = new FormData();
-    fData.append("title", values.title);
-    fData.append("desc", values.desc);
-    fData.append("date", values.date);
-    fData.append("amount", values.amount);
-    fData.append("category", props.source);
-    fData.append("remark", values.remark);
-    fData.append("user_id", props.user_id);
-
-    axios
-      .post(url, fData)
-      .then((response) => toast.success(response.data.detail))
-      .catch((error) => alert(error));
-    window.location.reload();
   };
 
   // MUI-End //
   // Formik //
   const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
     useFormik({
+      enableReinitialize: true,
       initialValues: {
-        title: "",
-        desc: "",
-        date: "",
-        amount: "",
-        remark: "",
+        title: title,
+        desc: description,
+        date: date,
+        amount: amount,
+        remark: remark,
         category: "",
       },
       validationSchema: signUpSchema,
-      //   onSubmit: (values, action) => {
-      //     action.resetForm();
-      //     console.log(values);
-      //     setOpen(false);
-      //     window.location.reload();
-      //     const url = "http://localhost/test/userincome.php";
-      //     let fData = new FormData();
-      //     fData.append("title", values.title);
-      //     fData.append("desc", values.desc);
-      //     fData.append("date", values.date);
-      //     fData.append("amount", values.amount);
-      //     fData.append("category", props.source);
-      //     fData.append("remark", values.remark);
-      //     fData.append("user_id", props.user_id);
+      onSubmit: (values, action) => {
+        action.resetForm();
+        setOpen(false);
 
-      //     axios
-      //       .post(url, fData)
-      //       .then((response) => toast.success(response.data.detail))
-      //       .catch((error) => alert(error));
-      //   },
+        const url = "http://localhost/test/updateitem.php";
+        let fData = new FormData();
+        fData.append("title", values.title);
+        fData.append("desc", values.desc);
+        fData.append("date", values.date);
+        fData.append("amount", values.amount);
+        fData.append("category", props.source);
+        fData.append("remark", values.remark);
+        fData.append("user_id", props.user_id);
+        fData.append("txn_id", txn_id);
+        axios
+          .post(url, fData)
+          .then((response) => {
+            toast.success(response.data.detail);
+            setTitle(response.data.title);
+            setDate(response.data.date);
+            setRemark(response.data.remark);
+            setDescription(response.data.description);
+            setAmount(response.data.amount);
+          })
+          .catch((error) => alert(error));
+        window.location.reload();
+      },
     });
 
   return (
@@ -87,14 +114,18 @@ function AddItem(props) {
       <div className="addItemList">
         {/* MUI-Start */}
         <div>
-          <Button onClick={handleClickOpen} style={{ padding: "0px" }}>
-            <AddItemInd title={props.title} />
-          </Button>
+          <div onClick={handleClickOpen}>
+            <MdEdit
+              size={20}
+              color="blue"
+              style={{ cursor: "pointer", marginRight: "12px" }}
+            />
+          </div>
 
           <Dialog
             style={{ backdropFilter: "blur(2px)" }}
             open={open}
-            onClose={handleClose}
+            // onClose={handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
@@ -107,7 +138,7 @@ function AddItem(props) {
                   color: "#0575e6",
                 }}
               >
-                <span>Add {props.title}</span>
+                <span>Edit {props.title}</span>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
@@ -200,8 +231,8 @@ function AddItem(props) {
                       >
                         Close
                       </Button>
-                      <Button type="submit" onClick={handleSave}>
-                        Save
+                      <Button type="submit" autoFocus>
+                        Update
                       </Button>
                     </DialogActions>
                   </form>
@@ -215,15 +246,4 @@ function AddItem(props) {
     </>
   );
 }
-export default AddItem;
-function AddItemInd(props) {
-  return (
-    <>
-      <button className="addItemButton">
-        <IoAddCircle size={20} style={{ color: "#fff" }} />
-        &nbsp; Add {props.title}
-      </button>
-      <ToastContainer theme="dark" />
-    </>
-  );
-}
+export default EditItem;

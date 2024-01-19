@@ -15,8 +15,52 @@
   text-transform: uppercase;
   transition: all 0.3s;
 }
+
 .addItemButton:hover {
   transform: scale(1.05);
   filter: drop-shadow(2px 2px 5px #55555571);
   cursor: pointer;
+}
+
+.addItemForm input {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border: 1px solid #0575e6;
+}
+.addItemForm input:focus {
+  outline: 1px solid #0575e6;
+  background-color: #ddd;
+}
+.addItemForm label {
+  font-size: 16px;
+  font-weight: 300;
+  color: #0575e6;
+  padding: 10px;
+}
+.addItemForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  border-collapse: collapse;
+}
+
+.inputBox2 {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.addItemError {
+  color: red;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  font-size: 14px;
 }

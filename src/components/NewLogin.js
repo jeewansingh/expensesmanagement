@@ -6,17 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    // if (username == "username" && password == "pass") {
-    //   toast.success("Logged in");
-    // } else toast.error("Invalid Username or Password!");
     console.log(username);
     console.log(password);
 
@@ -24,15 +19,19 @@ const Login = () => {
     let fData = new FormData();
     fData.append("username", username);
     fData.append("password", password);
+
     axios
       .post(url, fData)
       .then((response) => {
-        const token = response.data.token;
+        toast.success(response.data.detail);
+        const token = response?.data?.token;
         localStorage.setItem("token", token);
-      })
-      .then(() => {
+        localStorage.setItem("username", response.data.username);
         navigate("/dashboard");
+        window.location.reload();
+        return response.data;
       })
+
       .catch((error) => {
         toast.error(error.response.data.detail);
       });

@@ -1,0 +1,10 @@
+.profileBodyContainer {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+}
+.profileImage {
+  width: 150px;
+  height: 150px;
+}

@@ -51,10 +51,13 @@
 }
 .itemRemark {
   display: flex;
-  gap: 16px;
+  /* gap: 8px; */
   align-items: center;
 }
-
+.itemAction {
+  display: flex;
+  align-items: center;
+}
 .listHead {
   color: #fff;
 }

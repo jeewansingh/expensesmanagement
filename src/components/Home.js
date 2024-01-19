@@ -23,9 +23,7 @@ const Home = () => {
         </div>
         <div className="Btn">
           <Button btnName="Login" onClick={handleLogin}></Button>
-
           <Button btnName="Signup" onClick={handleSignup}></Button>
-
           <Outlet />
         </div>
       </div>

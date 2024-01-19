@@ -52,10 +52,10 @@ function DashboardBody(props) {
           <Track totalBalance="9000000" expense="5000000" income="8000000" />
           <Recent title="Recent Transactions" />
           <div className="addItemContainer">
-            <AddItem title="Income" />
-            <AddItem title="Expense" />
-            <AddItem title="Receivable Debts" />
-            <AddItem title="Payable Debts" />
+            <AddItem title="Income" source="income" />
+            <AddItem title="Expense" source="expense" />
+            <AddItem title="receivable-debts" source="receivable-debts" />
+            <AddItem title="payable-debts" source="payable-debts" />
           </div>
         </div>
       </div>

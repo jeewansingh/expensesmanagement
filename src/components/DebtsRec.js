@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-function Expense() {
+function DebtsRec() {
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemData, setItemData] = useState([]);
-  const category = "expense";
+  const category = "receivable-debts";
   const url = "http://localhost/test/userincome.php";
   useEffect(() => {
     const apiUrl = `${url}?category=${category}`;
@@ -24,8 +23,8 @@ function Expense() {
   return (
     <>
       <Transactions
-        title="expense"
-        source="expense"
+        title="receivable-debts"
+        source="receivable-debts"
         items={itemData}
         total_page={totalPage}
         current_page={currentPage}
@@ -33,4 +32,4 @@ function Expense() {
     </>
   );
 }
-export default Expense;
+export default DebtsRec;
