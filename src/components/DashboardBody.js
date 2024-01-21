@@ -1,5 +1,5 @@
 import "./css/DashboardBody.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ViewBalance from "./ViewBalance";
 import Track from "./Track";
 import Recent from "./Recent";
@@ -8,8 +8,28 @@ import { TbMoneybag } from "react-icons/tb";
 import { IoTrendingDownSharp, IoTrendingUpSharp } from "react-icons/io5";
 import AddItem from "./AddItem";
 import Greetings from "./functions/Greetings";
+import axios from "axios";
 
 function DashboardBody(props) {
+  const [totalincome, setTotalincome] = useState("");
+  const [totalexpense, setTotalexpense] = useState("");
+  const [totalreceive, setTotalreceive] = useState("");
+  const [totalpay, setTotalpay] = useState("");
+
+  const url = "http://localhost/test/totalbalance.php";
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const apiUrl = `${url}?token=${token}`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setTotalincome(response.data.totalIncome);
+        setTotalexpense(response.data.totalExpense);
+        setTotalreceive(response.data.totalReceive);
+        setTotalpay(response.data.totalPay);
+      })
+      .catch((error) => console.log(error));
+  }, [url]);
   // function greetings() {
   //   const date = new Date();
   //   let hour = date.getHours();
@@ -32,7 +52,7 @@ function DashboardBody(props) {
         <div className="balanceView">
           <ViewBalance
             title="Total Balance"
-            balance="920000"
+            balance="00"
             icon={<MdAccountBalanceWallet size={20} />}
           />
           <ViewBalance
@@ -42,17 +62,21 @@ function DashboardBody(props) {
           />
           <ViewBalance
             title="Total Income"
-            balance="800000"
+            balance={totalincome}
             icon={<IoTrendingDownSharp size={20} />}
           />
           <ViewBalance
             title="Total Expense"
-            balance="500000"
+            balance={totalexpense}
             icon={<IoTrendingUpSharp size={20} />}
           />
         </div>
         <div className="recent">
-          <Track totalBalance="9000000" expense="5000000" income="8000000" />
+          <Track
+            totalBalance="900"
+            expense={totalexpense}
+            income={totalincome}
+          />
           <Recent title="Recent Transactions" />
           <div className="addItemContainer">
             <AddItem title="Income" source="income" />

@@ -17,10 +17,7 @@ const Signup = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(name);
-    console.log(username);
-    console.log(password);
-    console.log(cPassword);
+
     //Name Validation
     if (name.trim() == "") {
       toast.error("Enter Name");

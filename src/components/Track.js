@@ -31,7 +31,7 @@ function Track({ totalBalance, income, expense }) {
       {
         label: "",
         // data: [22, 45, 65],
-        data: [totalBalance, income, expense, 1000000, 4000000],
+        data: [totalBalance, income, expense, 100, 400],
         backgroundColor: [
           "#0575e6",
           "#ee6c4d",
