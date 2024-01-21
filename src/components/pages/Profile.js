@@ -1,29 +1,30 @@
-import DashaboardTop from "./DashaboardTop";
-import "./css/Profile.css";
-import SideNav from "./SideNav";
+import DashaboardTop from "../DashaboardTop";
+import "../css/Profile.css";
+import SideNav from "../SideNav";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import TokenCheck from "../functions/TokenCheck";
 
-function Profile(props) {
+function Profile() {
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("");
 
-  const username = localStorage.getItem("username");
-
   const url = "http://localhost/test/userinfo.php";
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const apiUrl = `${url}?username=${username}`;
+    const apiUrl = `${url}?token=${token}`;
     axios
       .get(apiUrl)
       .then((response) => {
         setName(response.data.name);
         setDate(response.data.date);
+        setUsername(response.data.username);
         setStatus(response.data.status);
       })
       .catch((error) => {
-        alert(error.response.data.detail);
+        console.log(error.response.data.detail);
       });
   }, [url]);
 
@@ -31,6 +32,7 @@ function Profile(props) {
 
   return (
     <>
+      <TokenCheck token={token} />
       <div className="dashboardContainer">
         <SideNav />
         <div>

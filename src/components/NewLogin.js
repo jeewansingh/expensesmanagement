@@ -12,8 +12,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
 
     const url = "http://localhost/test/login.php";
     let fData = new FormData();
@@ -26,9 +24,8 @@ const Login = () => {
         toast.success(response.data.detail);
         const token = response?.data?.token;
         localStorage.setItem("token", token);
-        localStorage.setItem("username", response.data.username);
         navigate("/dashboard");
-        window.location.reload();
+        // window.location.reload();
         return response.data;
       })
 

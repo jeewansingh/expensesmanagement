@@ -1,22 +1,29 @@
 import Login from "./../components/NewLogin";
 import Signup from "./../components/Signup";
 import Home from "../components/Home";
-import Dashboard from "../components/Dashboard";
-import Incomes from "../components/Incomes";
-import Expense from "../components/Expense";
+import Dashboard from "../components/pages/Dashboard";
+import Incomes from "../components/pages/Incomes";
+import Expense from "../components/pages/Expense";
 import { Route, Routes } from "react-router-dom";
 import ForbiddenPage from "../components/ForbiddenPage";
-import DebtsPay from "../components/DebtsPay";
-import DebtsRec from "../components/DebtsRec";
-import Profile from "../components/Profile";
+import DebtsPay from "../components/pages/DebtsPay";
+import DebtsRec from "../components/pages/DebtsRec";
+import Profile from "../components/pages/Profile";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Routing() {
   const data = localStorage.getItem("token");
+
+  // token send
+  // user id get
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/incomes" element={<Incomes />} />
       {data !== null && data !== "" ? (
         <>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -25,7 +32,6 @@ function Routing() {
           <Route path="/debtspayable" element={<DebtsPay />} />
           <Route path="/debtsreceivable" element={<DebtsRec />} />
           <Route path="/profile" element={<Profile />} />
-
           {/* <PrivateRoute /> */}
         </>
       ) : (

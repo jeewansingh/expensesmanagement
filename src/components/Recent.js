@@ -5,15 +5,15 @@ import { useState, useEffect } from "react";
 function Recent(props) {
   const [itemData, setItemData] = useState([]);
   const url = "http://localhost/test/recent.php";
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const apiUrl = `${url}`;
+    const apiUrl = `${url}?token=${token}`;
     axios
       .get(apiUrl)
       .then((response) => {
         setItemData(response.data.data);
       })
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   }, [url]);
   const items = itemData;
   return (
@@ -24,6 +24,7 @@ function Recent(props) {
           <div className="recentList">
             {items.map((item) => (
               <RecentItem
+                key={item.txn_id}
                 title={item.title}
                 desc={item.description}
                 date={item.date}

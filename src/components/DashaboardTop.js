@@ -4,31 +4,29 @@ import UserIcon from "./UserIcon.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function DashaboardTop(props) {
+function DashaboardTop({ title }) {
   const [name, setName] = useState("");
 
-  const username = localStorage.getItem("username");
+  const token = localStorage.getItem("token");
 
   const url = "http://localhost/test/userinfo.php";
 
-  let fData = new FormData();
-
   useEffect(() => {
-    const apiUrl = `${url}?username=${username}`;
+    const apiUrl = `${url}?token=${token}`;
     axios
       .get(apiUrl)
       .then((response) => {
         setName(response.data.name);
       })
       .catch((error) => {
-        alert(error.response.data.detail);
+        console.error(error.response.data.detail);
       });
   }, [url]);
   return (
     <>
       <div className="dashboardTop">
         <UserIcon name={name} />
-        <div className="pageTitle">{props.title}</div>
+        <div className="pageTitle">{title}</div>
       </div>
     </>
   );

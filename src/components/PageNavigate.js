@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function PageNavigate() {
   const [step, setStep] = useState(1);
-
+  console.log(step);
   function handleNext() {
     if (step < 5) setStep((s) => s + 1);
   }

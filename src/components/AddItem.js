@@ -17,6 +17,8 @@ import {
 import axios from "axios";
 
 function AddItem(props) {
+  const source = props.source;
+
   // MUI-Start //
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -25,26 +27,33 @@ function AddItem(props) {
   const handleClose = () => {
     setOpen(false);
   };
-
+  /////////////
   const handleSave = () => {
-    console.log(values);
-    setOpen(false);
-
-    const url = "http://localhost/test/userincome.php";
-    let fData = new FormData();
-    fData.append("title", values.title);
-    fData.append("desc", values.desc);
-    fData.append("date", values.date);
-    fData.append("amount", values.amount);
-    fData.append("category", props.source);
-    fData.append("remark", values.remark);
-    fData.append("user_id", props.user_id);
-
-    axios
-      .post(url, fData)
-      .then((response) => toast.success(response.data.detail))
-      .catch((error) => alert(error));
-    window.location.reload();
+    if (
+      values.title == "" ||
+      values.desc == "" ||
+      values.amount == "" ||
+      values.date == ""
+    ) {
+      setOpen(true);
+    } else {
+      const token = localStorage.getItem("token");
+      setOpen(false);
+      const url = "http://localhost/test/userincome.php";
+      let fData = new FormData();
+      fData.append("token", token);
+      fData.append("title", values.title);
+      fData.append("desc", values.desc);
+      fData.append("date", values.date);
+      fData.append("amount", values.amount);
+      fData.append("category", source);
+      fData.append("remark", values.remark);
+      axios
+        .post(url, fData)
+        .then((response) => toast.success(response.data.detail))
+        .catch((error) => alert(error));
+      window.location.reload();
+    }
   };
 
   // MUI-End //
@@ -60,26 +69,25 @@ function AddItem(props) {
         category: "",
       },
       validationSchema: signUpSchema,
-      //   onSubmit: (values, action) => {
-      //     action.resetForm();
-      //     console.log(values);
-      //     setOpen(false);
-      //     window.location.reload();
-      //     const url = "http://localhost/test/userincome.php";
-      //     let fData = new FormData();
-      //     fData.append("title", values.title);
-      //     fData.append("desc", values.desc);
-      //     fData.append("date", values.date);
-      //     fData.append("amount", values.amount);
-      //     fData.append("category", props.source);
-      //     fData.append("remark", values.remark);
-      //     fData.append("user_id", props.user_id);
-
-      //     axios
-      //       .post(url, fData)
-      //       .then((response) => toast.success(response.data.detail))
-      //       .catch((error) => alert(error));
-      //   },
+      onSubmit: (values, action) => {
+        // console.log("Test");
+        // action.resetForm();
+        // setOpen(false);
+        // const url = "http://localhost/test/userincome.php";
+        // let fData = new FormData();
+        // fData.append("title", values.title);
+        // fData.append("desc", values.desc);
+        // fData.append("date", values.date);
+        // fData.append("amount", values.amount);
+        // fData.append("category", props.source);
+        // fData.append("remark", values.remark);
+        // fData.append("user_id", props.user_id);
+        // axios
+        //   .post(url, fData)
+        //   .then((response) => toast.success(response.data.detail))
+        //   .catch((error) => alert(error));
+        // window.location.reload();
+      },
     });
 
   return (
@@ -111,12 +119,7 @@ function AddItem(props) {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  <form
-                    onSubmit={handleSubmit}
-                    method=""
-                    action=""
-                    className="addItemForm"
-                  >
+                  <form onSubmit={handleSubmit} className="addItemForm">
                     <div className="inputBox">
                       <label>Title</label>
                       <input

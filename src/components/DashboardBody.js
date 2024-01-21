@@ -7,24 +7,27 @@ import { MdAccountBalanceWallet } from "react-icons/md";
 import { TbMoneybag } from "react-icons/tb";
 import { IoTrendingDownSharp, IoTrendingUpSharp } from "react-icons/io5";
 import AddItem from "./AddItem";
+import Greetings from "./functions/Greetings";
 
 function DashboardBody(props) {
-  function greetings() {
-    const date = new Date();
-    let hour = date.getHours();
+  // function greetings() {
+  //   const date = new Date();
+  //   let hour = date.getHours();
 
-    if (hour >= 0 && hour < 12) {
-      return "Good Morning 🌄";
-    } else if (hour >= 12 && hour < 18) {
-      return "Good Afternoon ☀️";
-    } else return "Good Evening 🌆";
-  }
+  //   if (hour >= 0 && hour < 12) {
+  //     return "Good Morning 🌄";
+  //   } else if (hour >= 12 && hour < 18) {
+  //     return "Good Afternoon ☀️";
+  //   } else return "Good Evening 🌆";
+  // }
   return (
     <>
       <div className="dashbordBodyContainer">
         <div className="dashboardMainText">
           Hello, {props.name} 👋
-          <div className="dashboardSubText">{greetings()}</div>
+          <div className="dashboardSubText">
+            <Greetings />
+          </div>
         </div>
         <div className="balanceView">
           <ViewBalance

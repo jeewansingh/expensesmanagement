@@ -11,6 +11,7 @@ import AddItem from "./AddItem";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PageNavigate from "./PageNavigate";
+import { ToastContainer, toast } from "react-toastify";
 
 function Transactions({ title, source }) {
   const [totalPage, setTotalPage] = useState(0);
@@ -18,16 +19,17 @@ function Transactions({ title, source }) {
   const [itemData, setItemData] = useState([]);
   const category = source;
   const url = "http://localhost/test/userincome.php";
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const apiUrl = `${url}?category=${category}&page=${1}`;
+    const apiUrl = `${url}?category=${category}&page=${1}&token=${token}`;
     axios
       .get(apiUrl)
       .then((response) => {
-        setItemData(response.data.data);
-        setTotalPage(response.data.total_page);
-        setCurrentPage(response.data.current_page);
+        setItemData(response?.data?.data);
+        setTotalPage(response?.data?.total_page);
+        setCurrentPage(response?.data?.current_page);
       })
-      .catch((error) => alert(error));
+      .catch((error) => toast.error(error));
   }, [url]);
   function ItemHead() {
     return (
@@ -62,6 +64,7 @@ function Transactions({ title, source }) {
     );
   }
   const items = itemData;
+
   return (
     <>
       <div className="dashboardContainer">
@@ -70,8 +73,10 @@ function Transactions({ title, source }) {
           <DashaboardTop title={title} />
           <div className="itemBodyContainer">
             {ItemHead()}
+
             {items.map((item) => (
               <ItemList
+                key={item.txn_id}
                 txn_id={item.txn_id}
                 title={item.title}
                 desc={item.description}
@@ -82,7 +87,7 @@ function Transactions({ title, source }) {
               />
             ))}
           </div>
-          <PageNavigate />
+          {/* <PageNavigate /> */}
         </div>
       </div>
     </>

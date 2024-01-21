@@ -1,11 +1,11 @@
 import { MdDeleteForever } from "react-icons/md";
 import { useState } from "react";
-
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material/";
 import axios from "axios";
-function DeleteItem({ txn_id, title }) {
+
+function DeleteItem({ txn_id }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -15,10 +15,11 @@ function DeleteItem({ txn_id, title }) {
   const handleClickClose = () => {
     setOpen(false);
   };
+  const token = localStorage.getItem("token");
 
   const handleDelete = () => {
     const url = "http://localhost/test/userincome.php";
-    const apiUrl = `${url}?txn_id=${txn_id}`;
+    const apiUrl = `${url}?txn_id=${txn_id}&token=${token}`;
     axios
       .delete(apiUrl)
       .then((response) => {

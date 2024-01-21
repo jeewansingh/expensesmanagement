@@ -44,8 +44,8 @@ function EditItem(props) {
     //   .catch((error) => alert(error));
 
     const url = "http://localhost/test/edititem.php";
-
-    const apiUrl = `${url}?txn_id=${txn_id}`;
+    const token = localStorage.getItem("token");
+    const apiUrl = `${url}?txn_id=${txn_id}&token=${token}`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -65,7 +65,32 @@ function EditItem(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleUpdate = () => {
+    setOpen(false);
 
+    const url = "http://localhost/test/updateitem.php";
+    let fData = new FormData();
+    fData.append("title", values.title);
+    fData.append("desc", values.desc);
+    fData.append("date", values.date);
+    fData.append("amount", values.amount);
+    fData.append("category", props.source);
+    fData.append("remark", values.remark);
+    fData.append("user_id", props.user_id);
+    fData.append("txn_id", txn_id);
+    axios
+      .post(url, fData)
+      .then((response) => {
+        toast.success(response.data.detail);
+        setTitle(response.data.title);
+        setDate(response.data.date);
+        setRemark(response.data.remark);
+        setDescription(response.data.description);
+        setAmount(response.data.amount);
+      })
+      .catch((error) => alert(error));
+    window.location.reload();
+  };
   // MUI-End //
   // Formik //
   const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
@@ -81,31 +106,30 @@ function EditItem(props) {
       },
       validationSchema: signUpSchema,
       onSubmit: (values, action) => {
-        action.resetForm();
-        setOpen(false);
-
-        const url = "http://localhost/test/updateitem.php";
-        let fData = new FormData();
-        fData.append("title", values.title);
-        fData.append("desc", values.desc);
-        fData.append("date", values.date);
-        fData.append("amount", values.amount);
-        fData.append("category", props.source);
-        fData.append("remark", values.remark);
-        fData.append("user_id", props.user_id);
-        fData.append("txn_id", txn_id);
-        axios
-          .post(url, fData)
-          .then((response) => {
-            toast.success(response.data.detail);
-            setTitle(response.data.title);
-            setDate(response.data.date);
-            setRemark(response.data.remark);
-            setDescription(response.data.description);
-            setAmount(response.data.amount);
-          })
-          .catch((error) => alert(error));
-        window.location.reload();
+        // action.resetForm();
+        // setOpen(false);
+        // const url = "http://localhost/test/updateitem.php";
+        // let fData = new FormData();
+        // fData.append("title", values.title);
+        // fData.append("desc", values.desc);
+        // fData.append("date", values.date);
+        // fData.append("amount", values.amount);
+        // fData.append("category", props.source);
+        // fData.append("remark", values.remark);
+        // fData.append("user_id", props.user_id);
+        // fData.append("txn_id", txn_id);
+        // axios
+        //   .post(url, fData)
+        //   .then((response) => {
+        //     toast.success(response.data.detail);
+        //     setTitle(response.data.title);
+        //     setDate(response.data.date);
+        //     setRemark(response.data.remark);
+        //     setDescription(response.data.description);
+        //     setAmount(response.data.amount);
+        //   })
+        //   .catch((error) => alert(error));
+        // window.location.reload();
       },
     });
 
@@ -231,7 +255,7 @@ function EditItem(props) {
                       >
                         Close
                       </Button>
-                      <Button type="submit" autoFocus>
+                      <Button type="submit" onClick={handleUpdate}>
                         Update
                       </Button>
                     </DialogActions>
