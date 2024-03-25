@@ -38,6 +38,7 @@
   justify-content: space-between;
 }
 .balanceTitle {
+  text-transform: capitalize;
   font-size: 16px;
   color: #fff;
 }

@@ -16,23 +16,29 @@ function Recent(props) {
       .catch((error) => console.log(error));
   }, [url]);
   const items = itemData;
+  const length = itemData.length;
+
   return (
     <>
       <div className="recentContainer">
         <div className="recentTab">
           <p className="recentTitle">{props.title}</p>
-          <div className="recentList">
-            {items.map((item) => (
-              <RecentItem
-                key={item.txn_id}
-                title={item.title}
-                desc={item.description}
-                date={item.date}
-                cat={item.category}
-                balance={item.amount}
-              />
-            ))}
-          </div>
+          {length === 0 ? (
+            <p>No Data Found</p>
+          ) : (
+            <div className="recentList">
+              {items.map((item) => (
+                <RecentItem
+                  key={item.txn_id}
+                  title={item.title}
+                  desc={item.description}
+                  date={item.date}
+                  cat={item.category}
+                  balance={item.amount}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

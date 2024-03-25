@@ -1,7 +1,8 @@
+import Transactions from "./Transactions";
 import "./css/PageNavigate.css";
 import { useState } from "react";
 
-function PageNavigate() {
+function PageNavigate(props) {
   const [step, setStep] = useState(1);
   console.log(step);
   function handleNext() {
@@ -14,7 +15,7 @@ function PageNavigate() {
   return (
     <>
       <div className="step">
-        <div className="message">Step: {step}</div>
+        <div className="message">Step : {step}</div>
         <div className="numbers">
           <div className={`${step === 1 ? "active" : ""}`}>1</div>
           <div className={`${step === 2 ? "active" : ""}`}>2</div>

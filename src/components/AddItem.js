@@ -24,85 +24,82 @@ function AddItem(props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
-  /////////////
-  const handleSave = () => {
-    if (
-      values.title == "" ||
-      values.desc == "" ||
-      values.amount == "" ||
-      values.date == ""
-    ) {
-      setOpen(true);
-    } else {
-      const token = localStorage.getItem("token");
-      setOpen(false);
-      const url = "http://localhost/test/userincome.php";
-      let fData = new FormData();
-      fData.append("token", token);
-      fData.append("title", values.title);
-      fData.append("desc", values.desc);
-      fData.append("date", values.date);
-      fData.append("amount", values.amount);
-      fData.append("category", source);
-      fData.append("remark", values.remark);
-      axios
-        .post(url, fData)
-        .then((response) => toast.success(response.data.detail))
-        .catch((error) => alert(error));
-      window.location.reload();
-    }
-  };
 
   // MUI-End //
-  // Formik //
-  const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
-    useFormik({
-      initialValues: {
-        title: "",
-        desc: "",
-        date: "",
-        amount: "",
-        remark: "",
-        category: "",
-      },
-      validationSchema: signUpSchema,
-      onSubmit: (values, action) => {
-        // console.log("Test");
-        // action.resetForm();
-        // setOpen(false);
-        // const url = "http://localhost/test/userincome.php";
-        // let fData = new FormData();
-        // fData.append("title", values.title);
-        // fData.append("desc", values.desc);
-        // fData.append("date", values.date);
-        // fData.append("amount", values.amount);
-        // fData.append("category", props.source);
-        // fData.append("remark", values.remark);
-        // fData.append("user_id", props.user_id);
-        // axios
-        //   .post(url, fData)
-        //   .then((response) => toast.success(response.data.detail))
-        //   .catch((error) => alert(error));
-        // window.location.reload();
-      },
-    });
 
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [remark, setRemark] = useState("");
+  const [amount, setAmount] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Title Validation
+    if (title.trim() == "") {
+      toast.error("Enter Title");
+      return false;
+    } else if (title.length < 3) {
+      toast.error("Title Should be minimum 3 character.");
+      return false;
+    }
+    // Description Validation
+    if (description.trim() == "") {
+      toast.error("Enter Description");
+      return false;
+    } else if (description.length < 5) {
+      toast.error("Description Should be minimum 5 character.");
+      return false;
+    }
+    // Date Validation
+    if (date.trim() == "") {
+      toast.error("Choose Date");
+      return false;
+    }
+    // Amount Validation
+    if (amount.trim() == "") {
+      toast.error("Enter Amount");
+      return false;
+    } else if (amount <= 0) {
+      toast.error("Amount Should be more than 0");
+      return false;
+    }
+
+    const token = localStorage.getItem("token");
+    setOpen(false);
+    const url = "http://localhost/test/userincome.php";
+    let fData = new FormData();
+    fData.append("token", token);
+    fData.append("title", title);
+    fData.append("desc", description);
+    fData.append("date", date);
+    fData.append("amount", amount);
+    fData.append("category", source);
+    fData.append("remark", remark);
+    axios
+      .post(url, fData)
+      .then((response) => toast.success(response.data.detail))
+      .catch((error) => alert(error));
+    window.location.reload();
+  };
   return (
     <>
       <div className="addItemList">
         {/* MUI-Start */}
         <div>
-          <Button onClick={handleClickOpen} style={{ padding: "0px" }}>
+          <div onClick={handleClickOpen}>
             <AddItemInd title={props.title} />
-          </Button>
+          </div>
 
           <Dialog
             style={{ backdropFilter: "blur(2px)" }}
             open={open}
-            onClose={handleClose}
+            // onClose={handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
@@ -115,7 +112,7 @@ function AddItem(props) {
                   color: "#0575e6",
                 }}
               >
-                <span>Add {props.title}</span>
+                <span>Edit {props.title}</span>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
@@ -124,88 +121,60 @@ function AddItem(props) {
                       <label>Title</label>
                       <input
                         type="text"
-                        autoComplete="off"
-                        name="title"
                         placeholder="Title"
-                        value={values.title}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      ></input>
-                      {errors.title && touched.title ? (
-                        <p className="addItemError">{errors.title}</p>
-                      ) : null}
+                        autoComplete="off"
+                        name="name"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
                     </div>
                     <div className="inputBox">
                       <label>Description</label>
                       <input
                         type="text"
+                        placeholder="Description"
                         autoComplete="off"
-                        name="desc"
-                        placeholder="Descriptin"
-                        value={values.desc}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      ></input>
-                      {errors.desc && touched.desc ? (
-                        <p className="addItemError">{errors.desc}</p>
-                      ) : null}
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                      />
                     </div>
                     <div className="inputBox">
                       <label>Date</label>
                       <input
                         type="date"
+                        placeholder="Date"
+                        autoComplete="off"
                         name="date"
-                        max="9999-12-31"
-                        value={values.date}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      ></input>
-                      {errors.date && touched.date ? (
-                        <p className="addItemError">{errors.date}</p>
-                      ) : null}
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                      />
                     </div>
                     <div className="inputBox">
                       <label>Remark</label>
                       <input
                         type="text"
-                        name="remark"
-                        autoComplete="off"
                         placeholder="Remark"
-                        value={values.remark}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      ></input>
-                      {errors.remark && touched.remark ? (
-                        <p className="addItemError">{errors.remark}</p>
-                      ) : null}
+                        autoComplete="off"
+                        name="remark"
+                        value={remark}
+                        onChange={(e) => setRemark(e.target.value)}
+                      />
                     </div>
                     <div className="inputBox">
                       <label>Amount</label>
                       <input
                         type="number"
+                        placeholder="Amount"
                         autoComplete="off"
                         name="amount"
-                        placeholder="Amount"
-                        value={values.amount}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      ></input>
-                      {errors.amount && touched.amount ? (
-                        <p className="addItemError">{errors.amount}</p>
-                      ) : null}
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                      />
                     </div>
                     <DialogActions className="inputBox2">
-                      <Button
-                        onClick={handleClose}
-                        style={{
-                          color: "gray",
-                        }}
-                      >
-                        Close
-                      </Button>
-                      <Button type="submit" onClick={handleSave}>
-                        Save
-                      </Button>
+                      <Button onClick={handleClose}>Close</Button>
+                      <Button type="submit">Update</Button>
                     </DialogActions>
                   </form>
                 </DialogContentText>
@@ -213,6 +182,7 @@ function AddItem(props) {
             </div>
           </Dialog>
         </div>
+
         {/* MUI-End */}
       </div>
     </>
@@ -222,10 +192,10 @@ export default AddItem;
 function AddItemInd(props) {
   return (
     <>
-      <button className="addItemButton">
+      <div className="addItemButton">
         <IoAddCircle size={20} style={{ color: "#fff" }} />
         &nbsp; Add {props.title}
-      </button>
+      </div>
       <ToastContainer theme="dark" />
     </>
   );

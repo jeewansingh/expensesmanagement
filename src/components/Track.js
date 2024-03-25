@@ -20,7 +20,7 @@ ChartJS.register(
   BarElement
 );
 
-function Track({ totalBalance, income, expense }) {
+function Track({ totalBalance, income, expense, receivable, payable }) {
   // let total = parseInt(totalBalance);
   // let incomes = parseInt(income);
   // let expenses = parseInt(expense);
@@ -31,7 +31,7 @@ function Track({ totalBalance, income, expense }) {
       {
         label: "",
         // data: [22, 45, 65],
-        data: [totalBalance, income, expense, 100, 400],
+        data: [totalBalance, income, expense, receivable, payable],
         backgroundColor: [
           "#0575e6",
           "#ee6c4d",

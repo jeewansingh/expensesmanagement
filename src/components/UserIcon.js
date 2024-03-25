@@ -65,48 +65,53 @@ function UserIcon({ name }) {
           horizontal: "right",
         }}
       >
-        <Typography sx={{ p: 2 }} style={{ backgroundColor: "#293233" }}>
-          <div className="userInfo">
-            <div className="userProfile" onClick={handleProfileOpen}>
-              <img className="userImg" alt="User Image" src={img_src} />
-              <button className="logoutButton">
-                <span>{name}</span>
-              </button>
+        <>
+          <Typography sx={{ p: 2 }} style={{ backgroundColor: "#293233" }}>
+            <div className="userInfo">
+              <div className="userProfile" onClick={handleProfileOpen}>
+                <img className="userImg" alt="User Image" src={img_src} />
+                <button className="logoutButton">
+                  <span>{name}</span>
+                </button>
+              </div>
+              <div className="userProfile" onClick={handleClickOpen}>
+                <IoMdLogOut className="userImg" />
+                <button className="logoutButton">
+                  <p>Logout</p>
+                </button>
+              </div>
             </div>
-            <div className="userProfile" onClick={handleClickOpen}>
-              <IoMdLogOut className="userImg" />
-              <button className="logoutButton">
-                <p>Logout</p>
-              </button>
+            <div>
+              <Dialog
+                style={{ backdropFilter: "blur(2px)" }}
+                open={open}
+                onClose={handleClickClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Are you sure want to Log Out ?"}
+                </DialogTitle>
+                <DialogActions>
+                  <Button
+                    onClick={handleClickClose}
+                    style={{
+                      color: "gray",
+                    }}
+                  >
+                    No
+                  </Button>
+                  <Button
+                    onClick={(handleClickClose, handleRedirect)}
+                    autoFocus
+                  >
+                    Yes
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
-          </div>
-          <div>
-            <Dialog
-              style={{ backdropFilter: "blur(2px)" }}
-              open={open}
-              onClose={handleClickClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"Are you sure want to Log Out ?"}
-              </DialogTitle>
-              <DialogActions>
-                <Button
-                  onClick={handleClickClose}
-                  style={{
-                    color: "gray",
-                  }}
-                >
-                  No
-                </Button>
-                <Button onClick={(handleClickClose, handleRedirect)} autoFocus>
-                  Yes
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-        </Typography>
+          </Typography>
+        </>
       </Popover>
     </div>
   );

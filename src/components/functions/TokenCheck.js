@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function TokenCheck({ token }) {
-  const url1 = "http://localhost/test/checkuser.php";
+  const url = "http://localhost/test/checkuser.php";
   const navigate = useNavigate();
   useEffect(() => {
-    const apiUrl = `${url1}?token=${token}`;
+    const apiUrl = `${url}?token=${token}`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -18,7 +18,7 @@ function TokenCheck({ token }) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [url1]);
+  }, [url]);
   return <></>;
 }
 export default TokenCheck;

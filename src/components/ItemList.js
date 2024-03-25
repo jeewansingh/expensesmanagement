@@ -1,5 +1,6 @@
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
+import EditItem2 from "./NOTUSED/EditItem2";
 function ItemList(props) {
   function color() {
     if (props.cat === "income") {
@@ -25,6 +26,7 @@ function ItemList(props) {
         <div className="itemRemark">
           <EditItem title={props.title} txn_id={props.txn_id} />
           <DeleteItem txn_id={props.txn_id} title={props.title} />
+          {/* <EditItem2 title={props.title} txn_id={props.txn_id} /> */}
         </div>
       </div>
     </>

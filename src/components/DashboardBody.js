@@ -11,10 +11,13 @@ import Greetings from "./functions/Greetings";
 import axios from "axios";
 
 function DashboardBody(props) {
+  ///////////
   const [totalincome, setTotalincome] = useState("");
   const [totalexpense, setTotalexpense] = useState("");
   const [totalreceive, setTotalreceive] = useState("");
   const [totalpay, setTotalpay] = useState("");
+  const [totalbalance, setTotalbalance] = useState("");
+  const [totalsaving, setTotalsaving] = useState("");
 
   const url = "http://localhost/test/totalbalance.php";
   const token = localStorage.getItem("token");
@@ -27,9 +30,12 @@ function DashboardBody(props) {
         setTotalexpense(response.data.totalExpense);
         setTotalreceive(response.data.totalReceive);
         setTotalpay(response.data.totalPay);
+        setTotalsaving(response.data.totalSaving);
+        setTotalbalance(response.data.totalBalance);
       })
       .catch((error) => console.log(error));
   }, [url]);
+  ///////////////
   // function greetings() {
   //   const date = new Date();
   //   let hour = date.getHours();
@@ -40,6 +46,7 @@ function DashboardBody(props) {
   //     return "Good Afternoon ☀️";
   //   } else return "Good Evening 🌆";
   // }
+
   return (
     <>
       <div className="dashbordBodyContainer">
@@ -52,12 +59,12 @@ function DashboardBody(props) {
         <div className="balanceView">
           <ViewBalance
             title="Total Balance"
-            balance="00"
+            balance={totalbalance}
             icon={<MdAccountBalanceWallet size={20} />}
           />
           <ViewBalance
             title="Total Available Balance"
-            balance="200000"
+            balance={totalsaving}
             icon={<TbMoneybag size={20} />}
           />
           <ViewBalance
@@ -73,9 +80,11 @@ function DashboardBody(props) {
         </div>
         <div className="recent">
           <Track
-            totalBalance="900"
+            totalBalance={totalbalance}
             expense={totalexpense}
             income={totalincome}
+            payable={totalpay}
+            receivable={totalreceive}
           />
           <Recent title="Recent Transactions" />
           <div className="addItemContainer">

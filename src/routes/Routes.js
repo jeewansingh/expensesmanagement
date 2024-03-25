@@ -9,8 +9,9 @@ import ForbiddenPage from "../components/ForbiddenPage";
 import DebtsPay from "../components/pages/DebtsPay";
 import DebtsRec from "../components/pages/DebtsRec";
 import Profile from "../components/pages/Profile";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import LoginAdmin from "../admin/page/Loginad";
+import DashboardAdmin from "../admin/page/Dashboardad";
+import Users from "../admin/page/Users";
 
 function Routing() {
   const data = localStorage.getItem("token");
@@ -24,6 +25,7 @@ function Routing() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/incomes" element={<Incomes />} />
+
       {data !== null && data !== "" ? (
         <>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -32,7 +34,9 @@ function Routing() {
           <Route path="/debtspayable" element={<DebtsPay />} />
           <Route path="/debtsreceivable" element={<DebtsRec />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <PrivateRoute /> */}
+          <Route path="/adminlogin" element={<LoginAdmin />} />
+          <Route path="/admindashboard" element={<DashboardAdmin />} />
+          <Route path="/users" element={<Users />} />
         </>
       ) : (
         <>
