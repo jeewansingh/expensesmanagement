@@ -1,0 +1,42 @@
+.userContainer {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  background-color: #eeeeee3d;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px;
+}
+
+table {
+  margin: 20px;
+  width: calc(100% - 40px);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+.edit-link,
+.delete-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.edit-link:hover,
+.delete-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,14 @@
+.sideNavContainer {
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+}
+.sideNav {
+  padding: 30px;
+  background-color: #555;
+  color: #fff;
+  height: 100vh;
+}

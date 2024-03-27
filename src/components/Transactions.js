@@ -83,8 +83,8 @@ function Transactions({ title, source }) {
 
   /////
   // Date Filter
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("1920-01-01");
+  const [to, setTo] = useState("2080-01-01");
 
   const handleDateFilter = (e) => {
     e.preventDefault();
@@ -109,24 +109,27 @@ function Transactions({ title, source }) {
   const length = itemData.length;
 
   // Sort
-  // const [sort, setSort] = useState("");
-  // const handleSort = (e) => {
-  //   e.preventDefault();
-  //   setSort(e.target.value);
-  //   console.log(sort);
-  //   const apiUrl = `${url}?category=${category}&page=${1}&token=${token}&sort=${sort}`;
-  //   axios
-  //     .get(apiUrl)
-  //     .then((response) => {
-  //       setItemData(response?.data?.data); //Transactions
-  //       setTotalPage(response?.data?.total_page);
-  //       setCurrentPage(response?.data?.current_page);
-  //     })
-  //     .catch((error) => {
-  //       setNoData(error.response.data.detail);
-  //       setItemData("");
-  //     });
-  // };
+  const [sort, setSort] = useState("");
+  const handleSort = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    setSort(e.target.value);
+    // console.log(sort);
+    const apiUrl = `${url}?category=${category}&page=${1}&token=${token}&sort=${
+      e.target.value
+    }`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setItemData(response?.data?.data); //Transactions
+        setTotalPage(response?.data?.total_page);
+        setCurrentPage(response?.data?.current_page);
+      })
+      .catch((error) => {
+        setNoData(error.response.data.detail);
+        setItemData("");
+      });
+  };
   ///// PAGE NAVIGATE
 
   const [step, setStep] = useState(1);
@@ -136,7 +139,8 @@ function Transactions({ title, source }) {
 
       const apiUrl = `${url}?category=${category}&page=${
         step + 1
-      }&token=${token}`;
+      }&token=${token}&search=${search}&from=${from}&to=${to}&sort=${sort}`;
+
       axios
         .get(apiUrl)
         .then((response) => {
@@ -153,7 +157,7 @@ function Transactions({ title, source }) {
       setStep((s) => s - 1);
       const apiUrl = `${url}?category=${category}&page=${
         step - 1
-      }&token=${token}`;
+      }&token=${token}&search=${search}&from=${from}&to=${to}&sort=${sort}`;
       axios
         .get(apiUrl)
         .then((response) => {
@@ -229,20 +233,18 @@ function Transactions({ title, source }) {
             </form>
           </div>
           {/* Sort By */}
-          {/* <div>
+          <div>
             <form className="sort">
               <label>Sort By: </label>
               <select value={sort} onChange={handleSort}>
                 <option value="">Latest Added</option>
-                <option onChange={(e) => setSort(e.target.value)} value="title">
-                  Title
-                </option>
+                <option value="title">Title</option>
                 <option value="date">Date</option>
                 <option value="amount">Amount</option>
               </select>
-              {/* <button type="submit">Search</button> 
+              {/* <button type="submit">Search</button>  */}
             </form>
-          </div> */}
+          </div>
         </div>
         <div className="itemListHead">
           <div className="listHead">Particulars</div>
@@ -279,27 +281,29 @@ function Transactions({ title, source }) {
                     cat={source}
                   />
                 ))}
-                <div className="step">
-                  <div className="message">Step : {step}</div>
-                  <div className="numbers">
-                    {Array.from({ length: totalPage }, (_, index) => (
-                      <div
-                        key={index}
-                        className={`${step === index + 1 ? "active" : ""}`}
-                      >
-                        {index + 1}
-                      </div>
-                    ))}
+                {totalPage > 1 ? (
+                  <div className="step">
+                    <div className="message">Step : {step}</div>
+                    <div className="numbers">
+                      {Array.from({ length: totalPage }, (_, index) => (
+                        <div
+                          key={index}
+                          className={`${step === index + 1 ? "active" : ""}`}
+                        >
+                          {index + 1}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="stepButtons">
+                      <button className="button" onClick={handlePrevious}>
+                        Previous
+                      </button>
+                      <button className="button" onClick={handleNext}>
+                        Next
+                      </button>
+                    </div>
                   </div>
-                  <div className="stepButtons">
-                    <button className="button" onClick={handlePrevious}>
-                      Previous
-                    </button>
-                    <button className="button" onClick={handleNext}>
-                      Next
-                    </button>
-                  </div>
-                </div>
+                ) : null}
               </div>
             )}
           </div>

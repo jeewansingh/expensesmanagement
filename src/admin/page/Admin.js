@@ -3,11 +3,12 @@ import AdminCheck from "../../admin/components/AdminCheck";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./css/users.css";
-function Users() {
+
+function Admin() {
   const token = localStorage.getItem("token");
   const [itemData, setItemData] = useState([]);
 
-  const url = "http://localhost/test/admin/users.php";
+  const url = "http://localhost/test/admin/admin.php";
   useEffect(() => {
     const apiUrl = `${url}?token=${token}`;
     axios
@@ -25,14 +26,14 @@ function Users() {
     <>
       <AdminCheck token={token} />
       <div className="header">
-        <h1>Users</h1>
+        <h1>Admins</h1>
       </div>
       <div className="userContainer">
         <div>
           <AdminSideNav />
         </div>
         <div class="userList">
-          <h2>User List</h2>
+          <h2>Admin List</h2>
           <table>
             <thead>
               <tr>
@@ -74,4 +75,4 @@ function Users() {
     </>
   );
 }
-export default Users;
+export default Admin;

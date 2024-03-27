@@ -70,12 +70,12 @@ function DashboardBody(props) {
           <ViewBalance
             title="Total Income"
             balance={totalincome}
-            icon={<IoTrendingDownSharp size={20} />}
+            icon={<IoTrendingUpSharp size={20} />}
           />
           <ViewBalance
             title="Total Expense"
             balance={totalexpense}
-            icon={<IoTrendingUpSharp size={20} />}
+            icon={<IoTrendingDownSharp size={20} />}
           />
         </div>
         <div className="recent">

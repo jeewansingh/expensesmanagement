@@ -61,6 +61,10 @@ function AddItem(props) {
       toast.error("Choose Date");
       return false;
     }
+    if (date > "2025-01-01" || date < "2023-01-01") {
+      toast.error("Choose Valid Date");
+      return false;
+    }
     // Amount Validation
     if (amount.trim() == "") {
       toast.error("Enter Amount");
@@ -84,7 +88,7 @@ function AddItem(props) {
     axios
       .post(url, fData)
       .then((response) => toast.success(response.data.detail))
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
     window.location.reload();
   };
   return (
@@ -112,7 +116,7 @@ function AddItem(props) {
                   color: "#0575e6",
                 }}
               >
-                <span>Edit {props.title}</span>
+                <span>Add {props.title}</span>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
@@ -174,7 +178,7 @@ function AddItem(props) {
                     </div>
                     <DialogActions className="inputBox2">
                       <Button onClick={handleClose}>Close</Button>
-                      <Button type="submit">Update</Button>
+                      <Button type="submit">Add</Button>
                     </DialogActions>
                   </form>
                 </DialogContentText>

@@ -12,10 +12,11 @@ import Profile from "../components/pages/Profile";
 import LoginAdmin from "../admin/page/Loginad";
 import DashboardAdmin from "../admin/page/Dashboardad";
 import Users from "../admin/page/Users";
+import Admin from "../admin/page/Admin";
 
 function Routing() {
-  const data = localStorage.getItem("token");
-
+  const token = localStorage.getItem("token");
+  // console.log(token);
   // token send
   // user id get
   return (
@@ -26,7 +27,7 @@ function Routing() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/incomes" element={<Incomes />} />
 
-      {data !== null && data !== "" ? (
+      {token !== null && token !== "" ? (
         <>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/incomes" element={<Incomes />} />
@@ -37,6 +38,7 @@ function Routing() {
           <Route path="/adminlogin" element={<LoginAdmin />} />
           <Route path="/admindashboard" element={<DashboardAdmin />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/admins" element={<Admin />} />
         </>
       ) : (
         <>
@@ -46,6 +48,9 @@ function Routing() {
           <Route path="/debtspayable" element={<Login />} />
           <Route path="/debtsreceivable" element={<Login />} />
           <Route path="/profile" element={<Login />} />
+          <Route path="/admindashboard" element={<LoginAdmin />} />
+          <Route path="/users" element={<LoginAdmin />} />
+          <Route path="/admins" element={<LoginAdmin />} />
         </>
       )}
       <Route path="*" element={<ForbiddenPage />} />

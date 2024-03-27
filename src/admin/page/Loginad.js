@@ -28,7 +28,11 @@ function LoginAdmin() {
       })
 
       .catch((error) => {
-        toast.error(error.response.data.detail);
+        const data = error.response.data;
+        const keys = Object.keys(data);
+        keys.forEach((key) => {
+          toast.error(data[key]);
+        });
       });
   }
 
@@ -73,7 +77,6 @@ function LoginAdmin() {
               <input
                 type="text"
                 id="username"
-                required
                 placeholder="Username"
                 autoComplete="off"
                 name="username"
@@ -87,7 +90,6 @@ function LoginAdmin() {
                 type="password"
                 id="password"
                 name="password"
-                required
                 placeholder="Passowrd"
                 autoComplete="off"
                 value={password}
