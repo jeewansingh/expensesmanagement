@@ -1,6 +1,5 @@
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
-import EditItem2 from "./NOTUSED/EditItem2";
 function ItemList(props) {
   function color() {
     if (props.cat === "income") {

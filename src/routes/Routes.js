@@ -13,6 +13,8 @@ import LoginAdmin from "../admin/page/Loginad";
 import DashboardAdmin from "../admin/page/Dashboardad";
 import Users from "../admin/page/Users";
 import Admin from "../admin/page/Admin";
+import UserDetails from "../admin/page/UserDetails";
+import DeletedUsers from "../admin/page/DeletedUsers";
 
 function Routing() {
   const token = localStorage.getItem("token");
@@ -25,7 +27,8 @@ function Routing() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/incomes" element={<Incomes />} />
+      {/* <Route path="/incomes" element={<Incomes />} /> */}
+      <Route path="/adminlogin" element={<LoginAdmin />} />
 
       {token !== null && token !== "" ? (
         <>
@@ -35,10 +38,11 @@ function Routing() {
           <Route path="/debtspayable" element={<DebtsPay />} />
           <Route path="/debtsreceivable" element={<DebtsRec />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/adminlogin" element={<LoginAdmin />} />
           <Route path="/admindashboard" element={<DashboardAdmin />} />
           <Route path="/users" element={<Users />} />
           <Route path="/admins" element={<Admin />} />
+          <Route path="/deletedusers" element={<DeletedUsers />} />
+          <Route path="/users/:user_id" element={<UserDetails />} />
         </>
       ) : (
         <>
@@ -51,6 +55,8 @@ function Routing() {
           <Route path="/admindashboard" element={<LoginAdmin />} />
           <Route path="/users" element={<LoginAdmin />} />
           <Route path="/admins" element={<LoginAdmin />} />
+          <Route path="/deletedusers" element={<LoginAdmin />} />
+          <Route path="/users/:user_id" element={<LoginAdmin />} />
         </>
       )}
       <Route path="*" element={<ForbiddenPage />} />

@@ -18,6 +18,10 @@ function DashboardBody(props) {
   const [totalpay, setTotalpay] = useState("");
   const [totalbalance, setTotalbalance] = useState("");
   const [totalsaving, setTotalsaving] = useState("");
+  const [income7day, setIncome7day] = useState("");
+  const [expense7day, setExpense7day] = useState("");
+  const [income30day, setIncome30day] = useState("");
+  const [expense30day, setExpense30day] = useState("");
 
   const url = "http://localhost/test/totalbalance.php";
   const token = localStorage.getItem("token");
@@ -32,6 +36,10 @@ function DashboardBody(props) {
         setTotalpay(response.data.totalPay);
         setTotalsaving(response.data.totalSaving);
         setTotalbalance(response.data.totalBalance);
+        setIncome7day(response.data.income7day);
+        setExpense7day(response.data.expense7day);
+        setIncome30day(response.data.income30day);
+        setExpense30day(response.data.expense30day);
       })
       .catch((error) => console.log(error));
   }, [url]);
@@ -75,6 +83,26 @@ function DashboardBody(props) {
           <ViewBalance
             title="Total Expense"
             balance={totalexpense}
+            icon={<IoTrendingDownSharp size={20} />}
+          />
+          <ViewBalance
+            title="Last 7 Days Income"
+            balance={income7day}
+            icon={<IoTrendingUpSharp size={20} />}
+          />
+          <ViewBalance
+            title="Last 7 Days Expense"
+            balance={expense7day}
+            icon={<IoTrendingDownSharp size={20} />}
+          />
+          <ViewBalance
+            title="Last 30 Days Income"
+            balance={income30day}
+            icon={<IoTrendingUpSharp size={20} />}
+          />
+          <ViewBalance
+            title="Last 30 Days Expense"
+            balance={expense30day}
             icon={<IoTrendingDownSharp size={20} />}
           />
         </div>

@@ -69,11 +69,23 @@ function EditItem(props) {
       toast.error("Description Should be minimum 5 character.");
       return false;
     }
+
     // Date Validation
     if (date.trim() == "") {
       toast.error("Choose Date");
       return false;
     }
+
+    var now = new Date();
+    var aWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    var inputDate = new Date(date);
+
+    if (inputDate <= aWeekAgo || inputDate >= now) {
+      toast.error("Date must be between now and 7 days before from now");
+      return false;
+    }
+
     // Amount Validation
     if (amount.trim() == "") {
       toast.error("Enter Amount");

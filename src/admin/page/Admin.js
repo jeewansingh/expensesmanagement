@@ -1,5 +1,6 @@
 import AdminSideNav from "../components/AdminSideNav";
 import AdminCheck from "../../admin/components/AdminCheck";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./css/users.css";
@@ -20,7 +21,6 @@ function Admin() {
   }, [url]);
 
   const items = itemData;
-  console.log(items);
   const length = itemData.length;
   return (
     <>
@@ -57,13 +57,12 @@ function Admin() {
                     <td>{item.is_active == "1" ? "Active" : "Not Active"}</td>
                     <td>{item.date_created}</td>
                     <td>
-                      <a href="#" className="edit-link">
-                        Toggle
-                      </a>
-                      &nbsp;|&nbsp;
-                      <a href="#" className="delete-link">
-                        Delete
-                      </a>
+                      <Link
+                        to={`/users/${item.user_id}`}
+                        className="user-details"
+                      >
+                        Details
+                      </Link>
                     </td>
                   </tr>
                 ))

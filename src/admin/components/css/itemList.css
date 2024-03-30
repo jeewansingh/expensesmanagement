@@ -1,0 +1,5 @@
+.listContainer {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  background-color: #eeeeee3d;
+}

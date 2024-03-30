@@ -48,6 +48,7 @@ function AddItem(props) {
       toast.error("Title Should be minimum 3 character.");
       return false;
     }
+
     // Description Validation
     if (description.trim() == "") {
       toast.error("Enter Description");
@@ -56,15 +57,23 @@ function AddItem(props) {
       toast.error("Description Should be minimum 5 character.");
       return false;
     }
+
     // Date Validation
     if (date.trim() == "") {
       toast.error("Choose Date");
       return false;
     }
-    if (date > "2025-01-01" || date < "2023-01-01") {
-      toast.error("Choose Valid Date");
+
+    var now = new Date();
+    var aWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    var inputDate = new Date(date);
+
+    if (inputDate <= aWeekAgo || inputDate >= now) {
+      toast.error("Date must be between now and 7 days before from now");
       return false;
     }
+
     // Amount Validation
     if (amount.trim() == "") {
       toast.error("Enter Amount");

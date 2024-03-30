@@ -37,7 +37,28 @@ function Profile() {
         <SideNav />
         <div>
           <DashaboardTop title="Profile" />
-          <div className="profileBodyContainer">
+          <div className="profile-container">
+            <img
+              classNameName="profile-image"
+              src={img_src}
+              alt="Profile Picture"
+            />
+            <div className="profile-info">
+              <p>
+                <strong>Name:</strong> {name}
+              </p>
+              <p>
+                <strong>Username:</strong> {username}
+              </p>
+              <p>
+                <strong>Joined Date:</strong> {date}
+              </p>
+              <p>
+                <strong>Status:</strong> {status}
+              </p>
+            </div>
+          </div>
+          {/* <div classNameName="profileBodyContainer">
             <div>
               <img
                 src={img_src}
@@ -46,12 +67,24 @@ function Profile() {
               />
             </div>
             <div>
-              <div className="profileName">Name: {name}</div>
-              <div className="profileUsername">Username: {username}</div>
-              <div className="profileDate">Date: {date}</div>
-              <div className="profileStatus">Status: {status}</div>
+              <div className="profileName">
+                <strong>Name: </strong>
+                {name}
+              </div>
+              <div className="profileUsername">
+                <strong>Username: </strong>
+                {username}
+              </div>
+              <div className="profileDate">
+                <strong>Date: </strong>
+                {date}
+              </div>
+              <div className="profileStatus">
+                <strong>Status: </strong>
+                {status}
+              </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
     </>

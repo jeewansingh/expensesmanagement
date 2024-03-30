@@ -40,3 +40,11 @@ tr:hover {
 .delete-link:hover {
   text-decoration: underline;
 }
+.user-flex {
+  display: flex;
+  gap: 10px;
+}
+.user-details {
+  text-decoration: none;
+  color: #007bff;
+}

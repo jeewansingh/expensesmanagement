@@ -3,13 +3,12 @@ import AdminCheck from "../../admin/components/AdminCheck";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./css/users.css";
-import DeleteUser from "../components/DeleteUser";
-import { Link } from "react-router-dom";
-function Users() {
+
+function DeletedUsers() {
   const token = localStorage.getItem("token");
   const [itemData, setItemData] = useState([]);
 
-  const url = "http://localhost/test/admin/users.php";
+  const url = "http://localhost/test/admin/deleteduser.php";
   useEffect(() => {
     const apiUrl = `${url}?token=${token}`;
     axios
@@ -26,51 +25,32 @@ function Users() {
     <>
       <AdminCheck token={token} />
       <div className="header">
-        <h1>Users</h1>
+        <h1>Deleted Users</h1>
       </div>
       <div className="userContainer">
         <div>
           <AdminSideNav />
         </div>
         <div class="userList">
-          <h2>User List</h2>
+          <h2>Deleted User List</h2>
           <table>
             <thead>
               <tr>
                 <th>Username</th>
                 <th>Name</th>
-                <th>Status</th>
-                <th>Joined On</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {length === 0 ? (
                 <tr>
-                  <td colSpan="5">No Data Found</td>
+                  <td colSpan="2">No Data Found</td>
                 </tr>
               ) : (
                 items.map((item, index) => (
-                  <>
-                    <tr key={index}>
-                      <td>{item.username}</td>
-                      <td>{item.name}</td>
-                      <td>{item.is_active == "1" ? "Active" : "Not Active"}</td>
-                      <td>{item.date_created}</td>
-                      <td className="user-flex">
-                        <Link
-                          to={`/users/${item.user_id}`}
-                          className="user-details"
-                        >
-                          Details
-                        </Link>
-                        &nbsp;|&nbsp;
-                        <div href="" className="delete-link">
-                          <DeleteUser user_id={item.user_id} />
-                        </div>
-                      </td>
-                    </tr>
-                  </>
+                  <tr key={index}>
+                    <td>{item.username}</td>
+                    <td>{item.name}</td>
+                  </tr>
                 ))
               )}
             </tbody>
@@ -80,4 +60,4 @@ function Users() {
     </>
   );
 }
-export default Users;
+export default DeletedUsers;

@@ -23,6 +23,11 @@ const AdminSideNav = () => {
             icon={<IoMdHome size={20} />}
             url="/admins"
           />
+          <SideNavOption
+            name="Deleted"
+            icon={<IoMdHome size={20} />}
+            url="/deletedusers"
+          />
         </div>
       </div>
     </div>

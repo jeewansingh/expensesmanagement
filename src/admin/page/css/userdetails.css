@@ -1,0 +1,5 @@
+.detailsContainer {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  background-color: #eeeeee3d;
+}

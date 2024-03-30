@@ -25,6 +25,7 @@ function LoginAdmin() {
         const token = response?.data?.token;
         localStorage.setItem("token", token);
         navigate("/admindashboard");
+        window.location.reload();
       })
 
       .catch((error) => {
