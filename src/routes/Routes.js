@@ -15,6 +15,7 @@ import Users from "../admin/page/Users";
 import Admin from "../admin/page/Admin";
 import UserDetails from "../admin/page/UserDetails";
 import DeletedUsers from "../admin/page/DeletedUsers";
+import Download from "../components/pages/Download";
 
 function Routing() {
   const token = localStorage.getItem("token");
@@ -37,6 +38,7 @@ function Routing() {
           <Route path="/expenses" element={<Expense />} />
           <Route path="/debtspayable" element={<DebtsPay />} />
           <Route path="/debtsreceivable" element={<DebtsRec />} />
+          <Route path="/downloadtxn" element={<Download />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admindashboard" element={<DashboardAdmin />} />
           <Route path="/users" element={<Users />} />
@@ -51,6 +53,7 @@ function Routing() {
           <Route path="/expenses" element={<Login />} />
           <Route path="/debtspayable" element={<Login />} />
           <Route path="/debtsreceivable" element={<Login />} />
+          <Route path="/downloadtxn" element={<Login />} />
           <Route path="/profile" element={<Login />} />
           <Route path="/admindashboard" element={<LoginAdmin />} />
           <Route path="/users" element={<LoginAdmin />} />

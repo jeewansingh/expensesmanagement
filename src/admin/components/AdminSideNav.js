@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { IoMdHome } from "react-icons/io";
 import "./css/sideNav.css";
+import { FaUserCheck, FaUser } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const AdminSideNav = () => {
   return (
@@ -15,17 +17,17 @@ const AdminSideNav = () => {
           />
           <SideNavOption
             name="Users"
-            icon={<IoMdHome size={20} />}
+            icon={<FaUser size={20} />}
             url="/users"
           />
           <SideNavOption
             name="Admins"
-            icon={<IoMdHome size={20} />}
+            icon={<FaUserCheck size={20} />}
             url="/admins"
           />
           <SideNavOption
             name="Deleted"
-            icon={<IoMdHome size={20} />}
+            icon={<MdDelete size={20} />}
             url="/deletedusers"
           />
         </div>

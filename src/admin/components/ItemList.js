@@ -22,7 +22,8 @@ function ItemList(props) {
 
   const items = itemData;
   const length = itemData.length;
-
+  console.log(user.name);
+  console.log(user.is_admin);
   return (
     <>
       <UserProfile
@@ -34,6 +35,7 @@ function ItemList(props) {
         user_id={props.user_id}
       />
       <SearchUser />
+
       <table>
         <thead>
           <tr>

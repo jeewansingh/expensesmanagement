@@ -1,6 +1,4 @@
 import "./css/SideNav.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import SideNavOption from "./SideNavOption";
 import { IoMdHome } from "react-icons/io";
 import {
@@ -9,6 +7,7 @@ import {
   GiTakeMyMoney,
   GiMoneyStack,
 } from "react-icons/gi";
+import { MdDownload } from "react-icons/md";
 
 const SideNav = () => {
   return (
@@ -40,6 +39,11 @@ const SideNav = () => {
             name="Receivable&nbsp;Debts"
             icon={<GiMoneyStack size={20} />}
             url="/debtsreceivable"
+          />
+          <SideNavOption
+            name="Download"
+            icon={<MdDownload size={20} />}
+            url="/downloadtxn"
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 
 const ForbiddenPage = () => {
-  return <div>Error 404</div>;
+  return <h2>Error 404</h2>;
 };
 
 export default ForbiddenPage;

@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function MakeAdmin({ admin, user_id }) {
   const [newAdmin, setNewAdmin] = useState(parseInt(admin));
-
   const handleAdmin = () => {
     const token = localStorage.getItem("token");
     const updatedAdmin = newAdmin === 1 ? 0 : 1;
