@@ -9,6 +9,9 @@ import { IoTrendingDownSharp, IoTrendingUpSharp } from "react-icons/io5";
 import AddItem from "./AddItem";
 import Greetings from "./functions/Greetings";
 import axios from "axios";
+import Piechart from "./Piechart";
+import Barchart from "./Barchart";
+import Compare from "./Compare";
 
 function DashboardBody(props) {
   ///////////
@@ -85,16 +88,7 @@ function DashboardBody(props) {
             balance={totalexpense}
             icon={<IoTrendingDownSharp size={20} />}
           />
-          <ViewBalance
-            title="Last 7 Days Income"
-            balance={income7day}
-            icon={<IoTrendingUpSharp size={20} />}
-          />
-          <ViewBalance
-            title="Last 7 Days Expense"
-            balance={expense7day}
-            icon={<IoTrendingDownSharp size={20} />}
-          />
+
           <ViewBalance
             title="Last 30 Days Income"
             balance={income30day}
@@ -103,6 +97,16 @@ function DashboardBody(props) {
           <ViewBalance
             title="Last 30 Days Expense"
             balance={expense30day}
+            icon={<IoTrendingDownSharp size={20} />}
+          />
+          <ViewBalance
+            title="Total Budget"
+            balance={income7day}
+            icon={<IoTrendingUpSharp size={20} />}
+          />
+          <ViewBalance
+            title="Available Budget (this month)"
+            balance={expense7day}
             icon={<IoTrendingDownSharp size={20} />}
           />
         </div>
@@ -121,6 +125,11 @@ function DashboardBody(props) {
             <AddItem title="receivable-debts" source="receivable-debts" />
             <AddItem title="payable-debts" source="payable-debts" />
           </div>
+        </div>
+        <div>
+          {/* <Barchart /> */}
+          <Piechart income30day={income30day} expense30day={expense30day} />
+          <Compare />
         </div>
       </div>
     </>

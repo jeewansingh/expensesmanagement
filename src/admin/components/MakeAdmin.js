@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function MakeAdmin({ admin, user_id }) {
   const [newAdmin, setNewAdmin] = useState(parseInt(admin));
+
   const handleAdmin = () => {
     const token = localStorage.getItem("token");
     const updatedAdmin = newAdmin === 1 ? 0 : 1;
@@ -15,7 +16,7 @@ function MakeAdmin({ admin, user_id }) {
     axios
       .post(apiUrl)
       .then((response) => {
-        toast.success(response.data);
+        toast.success(response.data.detail);
       })
       .catch((error) => toast.error(error));
   };
@@ -35,6 +36,7 @@ function MakeAdmin({ admin, user_id }) {
           Make Admin
         </button>
       )}
+      <ToastContainer />
     </>
   );
 }

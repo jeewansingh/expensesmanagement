@@ -18,11 +18,37 @@ import axios from "axios";
 
 function AddItem(props) {
   const source = props.source;
+  const [list, setList] = useState([]);
+
+  // const url = "http://localhost/test/itemlist.php";
+  // const apiUrl = `${url}?category=${source}`;
+  // axios
+  //   .post(apiUrl)
+  //   .then((response) => {
+  //     setList(response.data.detail);
+  //   })
+  //   .catch((error) => toast.error(error));
 
   // MUI-Start //
   const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
+  const handleClickOpen = async () => {
     setOpen(true);
+    const url = "http://localhost/test/itemlist.php";
+    const apiUrl = `${url}?category=${source}`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setList(response.data.list);
+      })
+      .catch((error) => console.log(error));
+
+    // try {
+    //   const response = await axios.get(apiUrl);
+    //   setList(response.data.list);
+    //   console.log(response.data.list);
+    // } catch (error) {
+    //   toast.error(error);
+    // }
   };
 
   const handleClose = () => {
@@ -42,10 +68,7 @@ function AddItem(props) {
 
     // Title Validation
     if (title.trim() == "") {
-      toast.error("Enter Title");
-      return false;
-    } else if (title.length < 3) {
-      toast.error("Title Should be minimum 3 character.");
+      toast.error("Choose a category");
       return false;
     }
 
@@ -131,15 +154,31 @@ function AddItem(props) {
                 <DialogContentText id="alert-dialog-description">
                   <form onSubmit={handleSubmit} className="addItemForm">
                     <div className="inputBox">
-                      <label>Title</label>
-                      <input
+                      <label>Choose Category</label>
+                      <select
+                        className="dropdown"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      >
+                        <option value="">Select an item</option>
+                        {list.map((item, index) => (
+                          <option
+                            className="optionDrop"
+                            key={index}
+                            value={item.name}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                      {/* <input
                         type="text"
                         placeholder="Title"
                         autoComplete="off"
                         name="name"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                      />
+                      /> */}
                     </div>
                     <div className="inputBox">
                       <label>Description</label>

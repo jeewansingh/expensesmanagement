@@ -23,7 +23,11 @@ function ItemList(props) {
         </div>
         <p className="itemRemark">{props.remark}</p>
         <div className="itemRemark">
-          <EditItem title={props.title} txn_id={props.txn_id} />
+          <EditItem
+            title={props.title}
+            txn_id={props.txn_id}
+            source={props.cat}
+          />
           <DeleteItem txn_id={props.txn_id} title={props.title} />
           {/* <EditItem2 title={props.title} txn_id={props.txn_id} /> */}
         </div>

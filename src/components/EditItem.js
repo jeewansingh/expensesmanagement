@@ -18,8 +18,27 @@ function EditItem(props) {
   const txn_id = props.txn_id;
   // MUI-Start //
   const [open, setOpen] = useState(false);
+  const [list, setList] = useState([]);
+
   const handleClickOpen = () => {
     setOpen(true);
+
+    const itemurl = "http://localhost/test/itemlist.php";
+    const itemapiUrl = `${itemurl}?category=${props.source}`;
+
+    axios
+      .get(itemapiUrl)
+      .then((response) => {
+        setList(response.data.list);
+      })
+      .catch((error) => console.log(error));
+
+    // try {
+    //   const response = axios.get(itemapiUrl);
+    //   setList(response.data.list);
+    //   console.log(response.data);
+    // } catch (error) {
+    //   toast.error(error);
 
     const url = "http://localhost/test/edititem.php";
     const token = localStorage.getItem("token");
@@ -32,6 +51,7 @@ function EditItem(props) {
         setRemark(response.data.remark);
         setDescription(response.data.description);
         setAmount(response.data.amount);
+        setCategory(response.data.category);
       })
       .catch((error) => {
         alert(error.response.data.detail);
@@ -49,7 +69,7 @@ function EditItem(props) {
   const [date, setDate] = useState("");
   const [remark, setRemark] = useState("");
   const [amount, setAmount] = useState("");
-
+  const [category, setCategory] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -154,7 +174,24 @@ function EditItem(props) {
                 <DialogContentText id="alert-dialog-description">
                   <form onSubmit={handleSubmit} className="addItemForm">
                     <div className="inputBox">
-                      <label>Title</label>
+                      <label>Choose Category</label>
+                      <select
+                        className="dropdown"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      >
+                        <option value="">Select an item</option>
+                        {list.map((item, index) => (
+                          <option
+                            className="optionDrop"
+                            key={index}
+                            value={item.name}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                      {/* <label>Title</label>
                       <input
                         type="text"
                         placeholder="Title"
@@ -162,7 +199,7 @@ function EditItem(props) {
                         name="name"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                      />
+                      /> */}
                     </div>
                     <div className="inputBox">
                       <label>Description</label>

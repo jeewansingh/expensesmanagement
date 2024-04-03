@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import "./css/users.css";
 import DeleteUser from "../components/DeleteUser";
 import { Link } from "react-router-dom";
+
 function Users() {
   const token = localStorage.getItem("token");
   const [itemData, setItemData] = useState([]);
@@ -64,10 +65,6 @@ function Users() {
                         >
                           Details
                         </Link>
-                        &nbsp;|&nbsp;
-                        <div href="" className="delete-link">
-                          <DeleteUser user_id={item.user_id} />
-                        </div>
                       </td>
                     </tr>
                   </>

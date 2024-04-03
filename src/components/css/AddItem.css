@@ -22,7 +22,8 @@
   cursor: pointer;
 }
 
-.addItemForm input {
+.addItemForm input,
+.dropdown {
   font-family: inherit;
   font-size: 16px;
   font-weight: 300;
@@ -63,4 +64,8 @@
   text-transform: capitalize;
   padding: 5px 10px;
   font-size: 14px;
+}
+
+.optionDrop {
+  margin: 10px;
 }

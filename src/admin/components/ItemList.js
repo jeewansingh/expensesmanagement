@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserProfile from "../components/UserProfile";
 import "./css/itemList.css";
-import SearchUser from "./SearchUser";
 
 function ItemList(props) {
   const [itemData, setItemData] = useState([]);
+  const navigate = useNavigate();
   const [user, setUser] = useState([]);
 
   const url = "http://localhost/test/admin/userdetails.php";
@@ -17,13 +18,14 @@ function ItemList(props) {
         setItemData(response.data.data);
         setUser(response.data.user);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        navigate("/users");
+      });
   }, [url]);
 
   const items = itemData;
   const length = itemData.length;
-  console.log(user.name);
-  console.log(user.is_admin);
   return (
     <>
       <UserProfile
@@ -33,8 +35,8 @@ function ItemList(props) {
         status={user.is_active}
         admin={user.is_admin}
         user_id={props.user_id}
+        is_delete={user.is_delete}
       />
-      <SearchUser />
 
       <table>
         <thead>
